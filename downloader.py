@@ -81,7 +81,7 @@ class MrBaigDownloader:
         url_entry = ttk.Entry(url_frame, textvariable=self.url_var, font=("Segoe UI", 11))
         url_entry.pack(side="left", expand=True, fill="x", padx=(0, 10))
         
-        fetch_btn = ttk.Button(url_frame, text="Fetch Formats", style="Primary.TButton", command=self.start_fetch_thread)
+        fetch_btn = ttk.Button(url_frame, text="Download", style="Primary.TButton", command=self.start_fetch_thread)
         fetch_btn.pack(side="left")
 
         # Save Path
