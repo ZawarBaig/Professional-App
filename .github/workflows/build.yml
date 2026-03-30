@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install yt-dlp pyinstaller
+        pip install yt-dlp pyinstaller Pillow
 
     - name: Download and Extract FFmpeg
       shell: powershell
@@ -31,11 +31,13 @@ jobs:
         Copy-Item -Path "ffmpeg_extracted\*\bin\ffmpeg.exe" -Destination ".\ffmpeg.exe"
 
     - name: Build EXE with PyInstaller
+      # Added the --name flag to explicitly name the output executable
       run: |
-        pyinstaller --noconsole --onefile --icon="icon.ico" --add-data "icon.ico;." --add-binary "ffmpeg.exe;." downloader.py
+        pyinstaller --noconsole --onefile --name "MrBaig-Downloader" --icon="icon.ico" --add-data "icon.ico;." --add-binary "ffmpeg.exe;." downloader.py
       
     - name: Upload EXE as Artifact
       uses: actions/upload-artifact@v4
       with:
         name: MrBaig-Downloader-Windows
-        path: dist/Downloader.exe
+        # Updated path to match the newly named executable
+        path: dist/MrBaig-Downloader.exe
